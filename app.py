@@ -38,7 +38,7 @@ app = Flask(__name__)
 #################################################
 @app.route("/")
 def welcome():
-    """List all available api routes."""
+    """List all available api routes,"""
     return (
         f"Welcome to the SQL-Alchemy APP API!<br/>"
         f"Available Routes:<br/>"
@@ -56,9 +56,7 @@ def precipitation():
 
     """Return a list of all Precipitation Data"""
     # Query all Precipitation
-    results = session.query(Measurement.date, Measurement.prcp).\
-        filter(Measurement.date >= "2016-08-24").\
-        all()
+    results = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= "2016-08-24").all()
 
     session.close()
   
@@ -81,8 +79,7 @@ def stations():
 
     """Return a list of all Stations"""
     # Query all Stations
-    results = session.query(Station.station).\
-                 order_by(Station.station).all()
+    results = session.query(Station.station).order_by(Station.station).all()
 
     session.close()
 
@@ -99,10 +96,7 @@ def tobs():
     """Return a list of all TOBs"""
     # Query all tobs
 
-    results = session.query(Measurement.date,  Measurement.tobs,Measurement.prcp).\
-                filter(Measurement.date >= '2016-08-23').\
-                filter(Measurement.station=='USC00519281').\
-                order_by(Measurement.date).all()
+    results = session.query(Measurement.date,  Measurement.tobs,Measurement.prcp).filter(Measurement.date >= '2016-08-23').filter(Measurement.station=='USC00519281').order_by(Measurement.date).all()
 
     session.close()
 
@@ -152,8 +146,7 @@ def Start_end_date(start_date, end_date):
     """Return a list of min, avg and max tobs for start and end dates"""
     # Query all tobs
 
-    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-                filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
 
     session.close()
   
